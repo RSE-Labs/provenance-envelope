@@ -1,0 +1,4444 @@
+{
+  "$defs": {
+    "LenderInstalmentRecord": {
+      "additionalProperties": false,
+      "description": "One record per mortgage instalment, bound to its Direct Debit by mandate reference. Every field is an RSE proposal.",
+      "properties": {
+        "annualRateBp": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "arrivedOn": {
+          "description": "Calendar date, YYYY-MM-DD",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "balanceAfterPence": {
+          "description": "Integer pence",
+          "maximum": 9007199254740991,
+          "minimum": -9007199254740991,
+          "type": "integer",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "capitalPence": {
+          "description": "Integer pence, never negative",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "dueDate": {
+          "description": "Calendar date, YYYY-MM-DD",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "instalmentPence": {
+          "description": "Integer pence, never negative",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "interestPence": {
+          "description": "Integer pence, never negative",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal. Regulated mortgage annual statements give interest for the year (FCA MCOB 7.5.3R), not per instalment"
+        },
+        "lenderName": {
+          "minLength": 1,
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "loanAccountRef": {
+          "minLength": 1,
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "mandateReference": {
+          "minLength": 1,
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: the key that binds the record to its Direct Debit"
+        },
+        "recordId": {
+          "minLength": 1,
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "recordType": {
+          "const": "lender-instalment",
+          "type": "string"
+        },
+        "simulated": {
+          "const": true,
+          "description": "Always true: every record in this demonstrator is simulated",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "recordType",
+        "simulated",
+        "recordId",
+        "lenderName",
+        "loanAccountRef",
+        "mandateReference",
+        "dueDate",
+        "instalmentPence",
+        "interestPence",
+        "capitalPence",
+        "annualRateBp",
+        "balanceAfterPence",
+        "arrivedOn"
+      ],
+      "title": "Per-instalment lender record (simulated)",
+      "type": "object"
+    },
+    "PlatformPayoutRecord": {
+      "additionalProperties": false,
+      "description": "One record per payout, bound to its bank credit by payout identifier. Gross is consideration plus fees plus taxes.",
+      "properties": {
+        "activityCount": {
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "x-field-origin": "published-specification",
+          "x-reference": "Platform reporting rules for sellers (SI 2023/817; HMRC manual IEIM904210): number of relevant activities"
+        },
+        "arrivedOn": {
+          "description": "Calendar date, YYYY-MM-DD",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-payout delivery to software"
+        },
+        "considerationPence": {
+          "description": "Integer pence, never negative",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "x-field-origin": "published-specification",
+          "x-reference": "Platform reporting rules for sellers (SI 2023/817; HMRC manual IEIM904210): consideration"
+        },
+        "feesPence": {
+          "description": "Integer pence, never negative",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "x-field-origin": "published-specification",
+          "x-reference": "Platform reporting rules for sellers (SI 2023/817; HMRC manual IEIM904210): fees and commissions"
+        },
+        "payoutDate": {
+          "description": "Calendar date, YYYY-MM-DD",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-payout delivery to software"
+        },
+        "payoutId": {
+          "minLength": 1,
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: the key that binds the record to its bank credit"
+        },
+        "periodEnd": {
+          "description": "Calendar date, YYYY-MM-DD",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-payout delivery to software"
+        },
+        "periodStart": {
+          "description": "Calendar date, YYYY-MM-DD",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-payout delivery to software"
+        },
+        "platformName": {
+          "minLength": 1,
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-payout delivery to software"
+        },
+        "recordId": {
+          "minLength": 1,
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-payout delivery to software"
+        },
+        "recordType": {
+          "const": "platform-payout",
+          "type": "string"
+        },
+        "sellerId": {
+          "minLength": 1,
+          "type": "string",
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-payout delivery to software"
+        },
+        "simulated": {
+          "const": true,
+          "description": "Always true: every record in this demonstrator is simulated",
+          "type": "boolean"
+        },
+        "taxesPence": {
+          "description": "Integer pence, never negative",
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer",
+          "x-field-origin": "published-specification",
+          "x-reference": "Platform reporting rules for sellers (SI 2023/817; HMRC manual IEIM904210): taxes withheld or charged"
+        }
+      },
+      "required": [
+        "recordType",
+        "simulated",
+        "recordId",
+        "platformName",
+        "sellerId",
+        "payoutId",
+        "payoutDate",
+        "periodStart",
+        "periodEnd",
+        "considerationPence",
+        "feesPence",
+        "taxesPence",
+        "activityCount",
+        "arrivedOn"
+      ],
+      "title": "Per-payout platform record (simulated)",
+      "type": "object"
+    }
+  },
+  "$id": "urn:rse-labs:itsa-demonstrator:rse-envelope:v0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The facts known about one payment. Each field carries a provenance class, its source and the date the software learnt it. A field left out does not apply to the payment; a field marked unknown applies but is not yet established.",
+  "properties": {
+    "bindings": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "boundBy": {
+            "enum": [
+              "payout-id",
+              "mandate-reference"
+            ],
+            "type": "string"
+          },
+          "boundOn": {
+            "description": "Calendar date, YYYY-MM-DD",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "type": "string"
+          },
+          "key": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "recordId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sourceId": {
+            "enum": [
+              "payslip",
+              "customer-mileage-log",
+              "platform-payout-record",
+              "lender-instalment-record"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "sourceId",
+          "recordId",
+          "boundBy",
+          "key",
+          "boundOn"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "envelopeVersion": {
+      "const": "rse-envelope/v0",
+      "type": "string"
+    },
+    "fields": {
+      "additionalProperties": false,
+      "properties": {
+        "amountPence": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Open Banking Read/Write API v4.0, transaction data dictionary: Amount"
+        },
+        "bookingDate": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Open Banking Read/Write API v4.0, transaction data dictionary: BookingDateTime"
+        },
+        "businessShareBp": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Basis points: 10000 is the whole",
+                  "maximum": 10000,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Basis points: 10000 is the whole",
+                  "maximum": 10000,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Basis points: 10000 is the whole",
+                  "maximum": 10000,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE: business share of a mixed-use line"
+        },
+        "capitalPence": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal: per-instalment lender record"
+        },
+        "descriptor": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Open Banking Read/Write API v4.0, transaction data dictionary: TransactionInformation"
+        },
+        "direction": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "credit",
+                    "debit"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "credit",
+                    "debit"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "credit",
+                    "debit"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Open Banking Read/Write API v4.0, transaction data dictionary: CreditDebitIndicator"
+        },
+        "feePence": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Platform reporting rules for sellers (SI 2023/817; HMRC manual IEIM904210): fees and commissions"
+        },
+        "grossPence": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Platform reporting rules for sellers (SI 2023/817; HMRC manual IEIM904210): consideration, plus fees and taxes"
+        },
+        "interestPence": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE proposal. Regulated mortgage annual statements give interest for the year (FCA MCOB 7.5.3R), not per instalment"
+        },
+        "merchantCategoryCode": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Open Banking Read/Write API v4.0, transaction data dictionary: MerchantDetails.MerchantCategoryCode"
+        },
+        "merchantName": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Open Banking Read/Write API v4.0, transaction data dictionary: MerchantDetails.MerchantName"
+        },
+        "movementKind": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "paye-salary",
+                    "platform-payout",
+                    "fuel",
+                    "vehicle-servicing",
+                    "vehicle-insurance",
+                    "phone-bill",
+                    "rent-received",
+                    "mortgage-instalment",
+                    "landlord-insurance",
+                    "property-repair",
+                    "purchase-refund",
+                    "personal-spending",
+                    "own-transfer"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "paye-salary",
+                    "platform-payout",
+                    "fuel",
+                    "vehicle-servicing",
+                    "vehicle-insurance",
+                    "phone-bill",
+                    "rent-received",
+                    "mortgage-instalment",
+                    "landlord-insurance",
+                    "property-repair",
+                    "purchase-refund",
+                    "personal-spending",
+                    "own-transfer"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "paye-salary",
+                    "platform-payout",
+                    "fuel",
+                    "vehicle-servicing",
+                    "vehicle-insurance",
+                    "phone-bill",
+                    "rent-received",
+                    "mortgage-instalment",
+                    "landlord-insurance",
+                    "property-repair",
+                    "purchase-refund",
+                    "personal-spending",
+                    "own-transfer"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE: the ledger's classification of what the payment is"
+        },
+        "ownerShareBp": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Basis points: 10000 is the whole",
+                  "maximum": 10000,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Basis points: 10000 is the whole",
+                  "maximum": 10000,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Basis points: 10000 is the whole",
+                  "maximum": 10000,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE: the customer's beneficial share of the property"
+        },
+        "propertyId": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE: ties a line to a property named at sign-up"
+        },
+        "reference": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Open Banking Read/Write API v4.0, transaction data dictionary: TransactionReference"
+        },
+        "vatOnFeePence": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "description": "Integer pence, never negative",
+                  "maximum": 9007199254740991,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "published-specification",
+          "x-reference": "Platform reporting rules for sellers (SI 2023/817; HMRC manual IEIM904210): taxes withheld or charged"
+        },
+        "vehicleId": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE: ties a cost to a vehicle named at sign-up"
+        },
+        "vehicleMethod": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "stated",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "field": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "record",
+                      "type": "string"
+                    },
+                    "recordId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "enum": [
+                        "bank-feed",
+                        "payslip",
+                        "customer-mileage-log",
+                        "platform-payout-record",
+                        "lender-instalment-record"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sourceId",
+                    "recordId",
+                    "field"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "mileage-rate",
+                    "actual-costs"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "derived",
+                    "inferred"
+                  ],
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "inputs": {
+                      "items": {
+                        "enum": [
+                          "amountPence",
+                          "direction",
+                          "bookingDate",
+                          "reference",
+                          "descriptor",
+                          "merchantName",
+                          "merchantCategoryCode",
+                          "movementKind",
+                          "grossPence",
+                          "feePence",
+                          "vatOnFeePence",
+                          "interestPence",
+                          "capitalPence",
+                          "vehicleId",
+                          "vehicleMethod",
+                          "businessShareBp",
+                          "propertyId",
+                          "ownerShareBp"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "const": "rule",
+                      "type": "string"
+                    },
+                    "ruleId": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "ruleId",
+                    "inputs"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "mileage-rate",
+                    "actual-costs"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "description": "Calendar date, YYYY-MM-DD",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "type": "string"
+                },
+                "provenance": {
+                  "const": "declared",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "by": {
+                      "enum": [
+                        "customer",
+                        "agent"
+                      ],
+                      "type": "string"
+                    },
+                    "declarationId": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "kind": {
+                      "const": "declaration",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "declarationId",
+                    "by"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "enum": [
+                    "mileage-rate",
+                    "actual-costs"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "arrivedOn": {
+                  "type": "null"
+                },
+                "provenance": {
+                  "const": "unknown",
+                  "type": "string"
+                },
+                "source": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "const": "none",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "value": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "provenance",
+                "value",
+                "source",
+                "arrivedOn"
+              ],
+              "type": "object"
+            }
+          ],
+          "x-field-origin": "rse-invented",
+          "x-reference": "RSE: the customer's election per vehicle (BIM75005) held as data"
+        }
+      },
+      "required": [
+        "amountPence",
+        "direction",
+        "bookingDate",
+        "reference",
+        "descriptor",
+        "merchantName",
+        "merchantCategoryCode"
+      ],
+      "type": "object"
+    },
+    "transactionId": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "envelopeVersion",
+    "transactionId",
+    "bindings",
+    "fields"
+  ],
+  "title": "Provenance envelope",
+  "type": "object",
+  "x-provenance-classes": {
+    "declared": "Given by the customer or their agent in answer to a question, with the date they gave it",
+    "derived": "Computed from stated fields by a rule HMRC or a regulator publishes",
+    "inferred": "A best guess from indirect evidence such as a merchant category code",
+    "stated": "Sent by a party to the payment, such as the bank, the platform or the lender",
+    "unknown": "Not established yet"
+  },
+  "x-status": "Version 0, written for a demonstrator on simulated data. Not an HMRC or Open Banking standard."
+}

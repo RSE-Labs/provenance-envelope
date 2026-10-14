@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:rse-labs:provenance-envelope:attrition-record:v0",
+  "title": "Attrition record",
+  "description": "What happens to the facts about one payment between the party that knows them and the tax authority's boundary. Five hops; at each, the fields and the pounds present by provenance class, and what the hop added, coarsened, realigned, dropped or delayed. Field names carry their hop as a prefix, so a name in any list says where it lives.",
+  "x-status": "Version 0, written for a demonstrator on simulated data. Not an HMRC or Open Banking standard.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["transactionId", "businessType", "hops", "boundary"],
+  "properties": {
+    "transactionId": { "type": "string", "minLength": 1, "description": "The bank's identifier for the payment." },
+    "businessType": {
+      "description": "The business the payment posts to, or null when it posts to none.",
+      "oneOf": [{ "type": "string", "enum": ["self-employment", "uk-property"] }, { "type": "null" }]
+    },
+    "hops": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "$ref": "#/$defs/HopRecord" },
+      "description": "In order: originator-record, bank-rail, ledger-envelope, ledger-posting, hmrc-boundary."
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["numbersThatCanCross", "envelopeFieldsIn", "fieldsReached"],
+      "properties": {
+        "numbersThatCanCross": { "type": "integer", "minimum": 0, "description": "How many numbers the update body can hold: 33 for self-employment, 16 for UK property, 0 when the payment posts to no business." },
+        "envelopeFieldsIn": { "type": "integer", "minimum": 0, "description": "How many fields the envelope held." },
+        "fieldsReached": { "type": "array", "items": { "type": "string" }, "description": "The body fields this payment's pounds landed in." }
+      }
+    }
+  },
+  "$defs": {
+    "ProvenanceClass": { "type": "string", "enum": ["stated", "derived", "declared", "inferred", "unknown"] },
+    "CountsByClass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stated", "derived", "declared", "inferred", "unknown"],
+      "properties": {
+        "stated": { "type": "integer", "minimum": 0 },
+        "derived": { "type": "integer", "minimum": 0 },
+        "declared": { "type": "integer", "minimum": 0 },
+        "inferred": { "type": "integer", "minimum": 0 },
+        "unknown": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "FieldNames": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "HopRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hop", "fieldsByClass", "poundsByClass", "added", "coarsened", "realigned", "dropped", "delayed"],
+      "properties": {
+        "hop": { "type": "string", "enum": ["originator-record", "bank-rail", "ledger-envelope", "ledger-posting", "hmrc-boundary"] },
+        "fieldsByClass": { "$ref": "#/$defs/CountsByClass", "description": "Fields present at this hop, by provenance class." },
+        "poundsByClass": { "$ref": "#/$defs/CountsByClass", "description": "Money the fields at this hop state, in pence, by the class of the field that carries it. Figures can overlap: a gross and the fee inside it both count. The total says how much money each class of evidence states at the hop, not what the payment was worth." },
+        "added": { "$ref": "#/$defs/FieldNames", "description": "Fields this hop introduced rather than carried from the hop before." },
+        "coarsened": { "$ref": "#/$defs/FieldNames", "description": "Fields of the previous hop that this hop folded in with other lines' figures, or merged with another money field of the same line." },
+        "realigned": { "$ref": "#/$defs/FieldNames", "description": "Fields placed in a different period from the date the payment carries." },
+        "dropped": { "$ref": "#/$defs/FieldNames", "description": "Fields of the previous hop that nothing at this hop carries forward." },
+        "delayed": { "$ref": "#/$defs/FieldNames", "description": "Fields that reached this hop later than the payment did; and fields of a line held open awaiting evidence." }
+      }
+    }
+  }
+}
