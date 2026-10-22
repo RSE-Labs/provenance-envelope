@@ -2,7 +2,7 @@
 
 A format for the facts about one payment, where every fact carries where it came from, how sure it is and the date the software learnt it. With it, an attrition record: what happens to those facts at each hop between the party that knows them and the figure a tax authority finally receives.
 
-Version 0. Published by RSE Labs Ltd as a proposal, not a standard. It was written for a reference ledger that runs on simulated data; it is not endorsed by HMRC, Open Banking or anyone else. Apache 2.0, so any originator, bank, platform, lender or software provider can adopt it, extend it or ignore it.
+Version 0. Published by RSE Labs Ltd ([rse-labs.com](https://rse-labs.com)) as a proposal, not a standard. It was written for a reference ledger that runs on simulated data; it is not endorsed by HMRC, Open Banking or anyone else. Apache 2.0, so any originator, bank, platform, lender or software provider can adopt it, extend it or ignore it.
 
 ## Why
 
